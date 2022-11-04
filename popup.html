@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style/popup.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="thirdParty/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <section id="alert-section" style="display: flex;justify-content: center;">
+
+    </section>
+    
+    <div class="wrapper" id="w_options" style="display: none;">
+      <div class="card" style="width: 20rem; left: 45px; top: 50px;">
+        <div class="card-body" style="z-index: 20;">
+
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title">Options</h5>
+            <button type="button" class="btn-close" aria-label="Close" id="btn-option-close"></button>
+          </div>
+          
+          <h6 class="card-subtitle mb-2 text-muted">Be sure that Anki is running for ANKIBOTO to work</h6>
+          <p class="card-text">The cards will be added to the deck you select here.</p>
+          <select  id="deck_select" class="form-select" disabled="">
+            
+          </select>
+          <br>
+          <p class="card-text">Choose a model, it's the type of cards you're going to study.</p>
+          
+          <select  id="model_select" class="form-select" disabled="">
+
+          </select>
+
+          <p class="font-weight-light txt" id="txt_Default" style="display: none;">2 cards per word (Word / Translation + Exemple / Translation)</p>
+          <p class="font-weight-light txt" id="txt_Classic" style="display: none;">1 card per word (Word / Translation )</p>
+          <p class="font-weight-light txt" id="txt_Context" style="display: none;">1 card per word (Word / Translation / Exemple )</p>
+          
+          <br>
+          <button type="button" class="btn btn-success" id="btn_save" disabled="">Save changes</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="wrapper" id="w_check" style="display: none;">
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+      </svg>
+    </div>
+
+    <svg id="gear" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="gear bi bi-gear" viewBox="0 0 16 16">
+      <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+      <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+    </svg>
+
+    <div class="progress" style="background-color: rgba(0, 0, 0, 0) !important;">
+      <div id="loading" class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="card mx-auto my-auto" style="top:4rem; width: 22rem; height: 30rem; border-radius: 3%; background-color: #ff5662;box-shadow: 0px 0px 25px 3px rgba(0,0,0,0.60);">
+      <div class="card-body">
+        
+        <div class="d-flex justify-content-between">
+          <img src="img/icons128.png" class="mx-auto">
+          
+        </div>
+        <h4 style="color: white;" class="text-center">Add every word you want to the list, and it will pop here.</h4>
+        <div class="overflow-auto" style="max-height: 196px;">
+          <p id="word-list">
+          
+          </p>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-between">
+        <button type="button" class="btn btn-light" id="btn-clear">Clear list</button>
+        <button type="button" class="btn btn-primary" id="btn-create" data-action="create">Create cards</button>
+      </div>
+    </div>
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>

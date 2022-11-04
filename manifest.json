@@ -1,0 +1,32 @@
+{
+    "name": "ANKIBOTO",
+    "description": "Create ANKI cards from TAKOBOTO",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons" : {
+        "128" : "img/icons128.png",
+        "48" : "img/icons48.png",
+        "16" : "img/icons16.png"
+    },
+    "content_scripts": [
+        {
+          "matches": ["*://takoboto.jp/*"],
+          "js": [
+            "/thirdParty/jquery.min.js",
+            "/thirdParty/arrive.min.js",
+            "content-script.js"
+          ]
+        }
+      ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon" : "img/icons16.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+      },
+    "permissions": [ "storage", "scripting"],
+    "host_permissions": [
+      "*://takoboto.jp/*"
+  ]
+  }
